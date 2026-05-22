@@ -312,6 +312,14 @@ void RichEditSDIWnd::ChangeUIState(HMENU hContextMenu)
   ::SendMessage(m_wndToolBar, TB_ENABLEBUTTON, ID_EDIT_UNDO,
                 MAKELONG(::SendMessage(m_wndEditView, EM_CANUNDO, 0, 0) != 0, 0));
 
+  CHARFORMAT2 cf = {};
+  cf.cbSize = sizeof(cf);
+  cf.dwMask = CFM_BOLD | CFM_ITALIC | CFM_UNDERLINE;
+  ::SendMessage(m_wndEditView, EM_GETCHARFORMAT, SCF_SELECTION, reinterpret_cast<LPARAM>(&cf));
+  ::SendMessage(m_wndToolBar, TB_CHECKBUTTON, ID_FORMAT_BOLD,      MAKELONG((cf.dwEffects & CFE_BOLD)      != 0, 0));
+  ::SendMessage(m_wndToolBar, TB_CHECKBUTTON, ID_FORMAT_ITALIC,    MAKELONG((cf.dwEffects & CFE_ITALIC)    != 0, 0));
+  ::SendMessage(m_wndToolBar, TB_CHECKBUTTON, ID_FORMAT_UNDERLINE, MAKELONG((cf.dwEffects & CFE_UNDERLINE) != 0, 0));
+
   std::filesystem::path filePath = m_strFileName;
   std::wstring fname = filePath.filename().wstring();
 
@@ -549,9 +557,16 @@ bool RichEditSDIWnd::OnCreate(HWND hWnd, LPCREATESTRUCT lpCreateStruct)
     {IDI_CUT,    ID_EDIT_CUT,   TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
     {IDI_COPY,   ID_EDIT_COPY,  TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
     {IDI_PASTE,  ID_EDIT_PASTE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
-    {IDI_DELETE, ID_EDIT_DELETE,TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
+    {IDI_DELETE,    ID_EDIT_DELETE,      TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
     {0, 0, TBSTATE_ENABLED, TBSTYLE_SEP, 0, 0},
-    {IDI_HELP,   IDM_ABOUT,     TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
+    {IDI_BOLD,      ID_FORMAT_BOLD,      TBSTATE_ENABLED, TBSTYLE_CHECK,  0, 0},
+    {IDI_ITALIC,    ID_FORMAT_ITALIC,    TBSTATE_ENABLED, TBSTYLE_CHECK,  0, 0},
+    {IDI_UNDERLINE, ID_FORMAT_UNDERLINE, TBSTATE_ENABLED, TBSTYLE_CHECK,  0, 0},
+    {0, 0, TBSTATE_ENABLED, TBSTYLE_SEP, 0, 0},
+    {IDI_FONT,      ID_FORMAT_FONT,      TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
+    {IDI_COLOR,     ID_FORMAT_COLOR,     TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
+    {0, 0, TBSTATE_ENABLED, TBSTYLE_SEP, 0, 0},
+    {IDI_HELP,      IDM_ABOUT,           TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0},
   };
 
   if (!m_wndToolBar.Create(m_hWnd, IDC_MAIN_TOOLBAR))

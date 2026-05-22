@@ -51,6 +51,11 @@
 #define IDR_EDIT_CONTEXT_MENU           139
 #define IDS_FILE_FILTER_RTF             140
 #define IDS_FILE_FILTER_RTF_EXT         141
+#define IDI_BOLD                        142
+#define IDI_ITALIC                      143
+#define IDI_UNDERLINE                   144
+#define IDI_FONT                        145
+#define IDI_COLOR                       146
 
 #define ID_FILE_NEW                     32771
 #define ID_FILE_OPEN                    32772
@@ -74,7 +79,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        142
+#define _APS_NEXT_RESOURCE_VALUE        147
 #define _APS_NEXT_COMMAND_VALUE         32801
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110

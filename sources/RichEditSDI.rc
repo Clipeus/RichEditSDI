@@ -26,6 +26,11 @@ IDI_PASTE   ICON "..\\..\\SimpleSDI\\sources\\res\\Paste_16x16.ico"
 IDI_SAVE    ICON "..\\..\\SimpleSDI\\sources\\res\\Save_16x16.ico"
 IDI_MAIN    ICON "..\\..\\SimpleSDI\\sources\\res\\SimpleSDI.ico"
 IDI_UNDO    ICON "..\\..\\SimpleSDI\\sources\\res\\Undo_16x16.ico"
+IDI_BOLD      ICON "res\\Bold_16x16.ico"
+IDI_ITALIC    ICON "res\\Italic_16x16.ico"
+IDI_UNDERLINE ICON "res\\Underline_16x16.ico"
+IDI_FONT      ICON "res\\Font_16x16.ico"
+IDI_COLOR     ICON "res\\Color_16x16.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 // Menu
